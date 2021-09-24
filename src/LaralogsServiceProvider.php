@@ -23,7 +23,6 @@ class LaralogsServiceProvider extends PackageServiceProvider
             echo 'WM';
             $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         }
-
     }
 
     public function configurePackage(Package $package): void
