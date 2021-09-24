@@ -2,7 +2,6 @@
 
 namespace Wremon\Laralogs\Listeners;
 
-
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Request;
 use Wremon\Laralogs\Models\Log;
