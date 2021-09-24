@@ -3,29 +3,26 @@
 namespace Wremon\Laralogs\Listeners;
 
 
+use Illuminate\Auth\Events\Login;
+use Illuminate\Support\Facades\Request;
+use Wremon\Laralogs\Models\Log;
 use Wremon\Laralogs\Providers\AuthServiceProvider;
 
 class LogSuccessfulLogin
 {
     /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
      * Handle the event.
      *
-     * @param  AuthServiceProvider  $event
+     * @param Login $login
      * @return void
      */
-    public function handle(AuthServiceProvider $event)
+    public function handle(Login $login)
     {
-
-        dd('HELLO');
+        Log::create([
+            'user_id'    => $login->user->id,
+            'user'       => $login->user->email,
+            'detail'     => 'Login Success',
+            'ip_address' => \request()->ip(),
+        ]);
     }
 }
