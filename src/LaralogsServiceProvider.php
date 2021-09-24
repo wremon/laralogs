@@ -20,7 +20,11 @@ class LaralogsServiceProvider extends PackageServiceProvider
             __DIR__.'/../config/laralogs.php' => config_path('laralogs.php'),
         ]);
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        if (config('laralogs.should_migrate')) {
+            echo 'WM';
+            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        }
+
     }
 
     public function configurePackage(Package $package): void

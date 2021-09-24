@@ -7,5 +7,5 @@ return [
     'db_database' => env('LARALOGS_DB_DATABASE'),
     'db_username' => env('LARALOGS_DB_USERNAME'),
     'db_password' => env('LARALOGS_DB_PASSWORD'),
-    'logs_table' => env('LARALOGS_TABLE')
+    'should_migrate' => env('LARALOGS_MIGRATE', false)
 ];
