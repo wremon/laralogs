@@ -49,7 +49,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Wremon\\Laralogs\\LaralogsServiceProvider"
+                "Wremon\\Laralogs\\LaralogsServiceProvider",
+                "Wremon\\Laralogs\\Providers\\AuthServiceProvider"
             ],
             "aliases": {
                 "Laralogs": "Wremon\\Laralogs\\LaralogsFacade"
