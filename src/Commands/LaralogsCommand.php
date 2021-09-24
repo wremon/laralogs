@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Wremon\Laralogs\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaralogsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laralogs';
 
     public $description = 'My command';
 
