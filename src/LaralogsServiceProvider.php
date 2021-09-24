@@ -5,7 +5,6 @@ namespace Wremon\Laralogs;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Wremon\Laralogs\Commands\LaralogsCommand;
-use Wremon\Laralogs\Models\Log;
 
 class LaralogsServiceProvider extends PackageServiceProvider
 {
