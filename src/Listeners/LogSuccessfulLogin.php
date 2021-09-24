@@ -2,7 +2,6 @@
 
 namespace Wremon\Laralogs\Listeners;
 
-
 use Wremon\Laralogs\Providers\AuthServiceProvider;
 
 class LogSuccessfulLogin
@@ -25,7 +24,6 @@ class LogSuccessfulLogin
      */
     public function handle(AuthServiceProvider $event)
     {
-
         dd('HELLO');
     }
 }

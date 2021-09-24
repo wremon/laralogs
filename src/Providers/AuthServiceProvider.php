@@ -2,16 +2,10 @@
 
 namespace Wremon\Laralogs\Providers;
 
-use Illuminate\Support\ServiceProvider;
-
-use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Wremon\Laralogs\Commands\LaralogsCommand;
-use Wremon\Laralogs\Models\Log;
 
 class AuthServiceProvider extends PackageServiceProvider
 {
-
     /**
      * The event listener mappings for the application.
      *

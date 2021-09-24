@@ -21,7 +21,7 @@ class LaralogsServiceProvider extends PackageServiceProvider
         ]);
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-//$this->app->bind('\Wremon\Laralogs\Providers\AuthServiceProvider');
+        //$this->app->bind('\Wremon\Laralogs\Providers\AuthServiceProvider');
 
 //        Log::create([
 //            'user_id' => 1,
