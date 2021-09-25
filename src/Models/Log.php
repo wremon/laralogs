@@ -34,7 +34,7 @@ class Log extends Model
         'user_agent',
     ];
 
-    public function __construct(array $attributes = array())
+    public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
 
