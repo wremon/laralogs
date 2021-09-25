@@ -15,15 +15,8 @@ class LaralogsServiceProvider extends PackageServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/../config/laralogs.php' => config_path('laralogs.php'),
-        ]);
-
-        if (config('laralogs.should_migrate')) {
-            echo 'WM';
-            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        }
-
+        $this->publishConfig();
+        $this->publishMigrations();
     }
 
     public function configurePackage(Package $package): void
@@ -39,5 +32,25 @@ class LaralogsServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasMigration('create_laralogs_table')
             ->hasCommand(LaralogsCommand::class);
+    }
+
+    /**
+     * Publish package config file.
+     */
+    protected function publishConfig()
+    {
+        $path = __DIR__ . '/../config/laralogs.php';
+
+        $this->publishes([$path => config_path('laralogs.php')], 'laravel-laralogs');
+
+        $this->mergeConfigFrom($path, 'laralogs');
+    }
+
+    /**
+     * Publish package migration files.
+     */
+    protected function publishMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 }

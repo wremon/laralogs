@@ -6,15 +6,35 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('laralogs_logs', function (Blueprint $table) {
+        if (Schema::connection(config('laralogs.db_connection'))->hasTable('laralogs_logs')) {
+            return;
+        }
+
+        Schema::connection(config('laralogs.db_connection'))->create('laralogs_logs', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable();
-            $table->string('user', 255)->nullable();
-            $table->string('detail', 255)->nullable();
+            $table->string('source', 255)->nullable();
+            $table->string('event', 255)->nullable();
             $table->string('ip_address', 255)->nullable();
+            $table->string('user_agent', 255)->nullable();
+            $table->nullableMorphs('authenticatable');
             $table->timestamps();
         });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::connection(config('laralogs.db_connection'))->dropIfExists('laralogs_logs');
     }
 };

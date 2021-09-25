@@ -2,11 +2,11 @@
 
 namespace Wremon\Laralogs\Listeners;
 
-use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
 use Wremon\Laralogs\Models\Log;
 
-class LogSuccessfulLogin
+class LogSuccessfulLogout
 {
     /**
      * The request.
@@ -29,20 +29,16 @@ class LogSuccessfulLogin
     /**
      * Handle the event.
      *
-     * @param Login $event
+     * @param Logout $event
      * @return void
      */
-    public function handle(Login $event)
+    public function handle(Logout $event)
     {
         $user = $event->user;
-        $ip = $this->request->ip();
-        $userAgent = $this->request->userAgent();
-//        $known = $user->logs()->whereIpAddress($ip)->whereUserAgent($userAgent)->first();
-//        $newUser = Carbon::parse($user->{$user->getCreatedAtColumn()})->diffInMinutes(Carbon::now()) < 1;
 
         $log = new Log([
             'source' => config('laralogs.source'),
-            'event' => 'Login',
+            'event' => 'Logout',
             'ip_address' => \request()->ip(),
             'user_agent' => request()->userAgent(),
         ]);
