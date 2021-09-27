@@ -14,5 +14,5 @@ return [
     /**
      * App name
      */
-    'source' => 'acme',
+    'source' => env('LARALOGS_APP_NAME', env('APP_NAME')),
 ];

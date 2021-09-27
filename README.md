@@ -1,5 +1,6 @@
 # Laralogs
-### The ultimate all-in-one logging package for Laravel projects (Pro Edition)
+
+This package is for centralized logging of multiple Laravel application into one connection.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/wremon/laralogs.svg?style=flat-square)](https://packagist.org/packages/wremon/laralogs)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/wremon/laralogs/run-tests?label=tests)](https://github.com/wremon/laralogs/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -16,6 +17,12 @@ You can install the package via composer:
 composer require wremon/laralogs
 ```
 
+### Configuration
+After installing, publish the config using the command below:
+```bash
+php artisan vendor:publish --provider="Wremon\Laralogs\LaralogsServiceProvider"
+```
+
 ### Set Up .env
 ```
 LARALOGS_DB_CONNECTION=sqlite
@@ -25,10 +32,29 @@ LARALOGS_DB_DATABASE=
 LARALOGS_DB_USERNAME=
 LARALOGS_DB_PASSWORD=
 LARALOGS_DB_DATABASE="/Users/username/www/my-project/database/database.sqlite"
-LARALOGS_MIGRATE=true
+LARALOGS_APP_NAME="My App Name"
 ```
 
-The `LARALOGS_MIGRATE` determines if you wish to run this package's migration table.
+The `LARALOGS_APP_NAME` determines the name of the application in the logging table.
+
+## Usage
+
+Get all the authentication logs of a user
+```
+User::find(1)->logs
+```
+
+Get the last authentication logs of a user
+```
+User::find(1)->lastLogin()
+User::find(1)->lastLoginIp()
+```
+
+Get the previous authentication logs of a user
+```
+User::find(1)->previousLogin()
+User::find(1)->previousLoginIp()
+```
 
 ## Changelog
 

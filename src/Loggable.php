@@ -11,13 +11,15 @@ trait Loggable
      */
     public function logs()
     {
-        return $this->morphMany(Log::class, 'authenticatable')->latest('created_at');
+        return $this->morphMany(Log::class, 'authenticatable')
+            ->where('source', config('laralogs.source'))
+            ->latest('created_at');
     }
 
     /**
      * Get the model's last login.
      */
-    public function lastLoginAt()
+    public function lastLogin()
     {
         return optional($this->logs()->first())->created_at;
     }
@@ -33,7 +35,7 @@ trait Loggable
     /**
      * Get the model's previous login at.
      */
-    public function previousLoginAt()
+    public function previousLogin()
     {
         return optional($this->logs()->skip(1)->first())->created_at;
     }

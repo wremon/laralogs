@@ -27,8 +27,6 @@ class Log extends Model
      */
     protected $fillable = [
         'source',
-        'log_type',
-        'log_id',
         'event',
         'ip_address',
         'user_agent',
