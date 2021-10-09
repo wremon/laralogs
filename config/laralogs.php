@@ -10,6 +10,7 @@ return [
     'db_database' => env('LARALOGS_DB_DATABASE'),
     'db_username' => env('LARALOGS_DB_USERNAME'),
     'db_password' => env('LARALOGS_DB_PASSWORD'),
+    'user_column'  => env('LARALOGS_USER_COLUMN'),
 
     /**
      * App name
