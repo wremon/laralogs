@@ -33,9 +33,18 @@ LARALOGS_DB_USERNAME=
 LARALOGS_DB_PASSWORD=
 LARALOGS_DB_DATABASE="/Users/username/www/my-project/database/database.sqlite"
 LARALOGS_APP_NAME="My App Name"
+LARALOGS_USER_COLUMN="email"
 ```
 
 The `LARALOGS_APP_NAME` determines the name of the application in the logging table.
+
+## User Model
+Include Laralogs to your User.php model.
+```
+use Wremon\Laralogs\Loggable;
+
+use Loggable;
+```
 
 ## Usage
 
