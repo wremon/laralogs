@@ -51,7 +51,7 @@ class LaralogsServiceProvider extends PackageServiceProvider
     protected function publishMigrations()
     {
         if ($this->app->runningInConsole()) {
-            if (!class_exists('CreateLaralogsTable')) {
+            if (! class_exists('CreateLaralogsTable')) {
                 $this->publishes([
                     __DIR__ . '/../database/migrations/create_laralogs_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_laralogs_table.php'),
                 ], 'laravel-laralogs');
