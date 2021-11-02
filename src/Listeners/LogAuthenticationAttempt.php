@@ -37,7 +37,16 @@ class LogAuthenticationAttempt
         $user = config('laralogs.user_model', '\App\Models\User');
 
         $userId = $user::where(config('laralogs.user_column'), $event->credentials[config('laralogs.user_column')])->value('id');
+
+        if (!$userId) {
+            return;
+        }
+
         $user = $user::find($userId);
+
+        if (!$user) {
+            return;
+        }
 
         $log = new Log([
             'source' => config('laralogs.source'),
