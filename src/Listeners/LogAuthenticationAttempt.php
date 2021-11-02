@@ -38,13 +38,13 @@ class LogAuthenticationAttempt
 
         $userId = $user::where(config('laralogs.user_column'), $event->credentials[config('laralogs.user_column')])->value('id');
 
-        if (!$userId) {
+        if (! $userId) {
             return;
         }
 
         $user = $user::find($userId);
 
-        if (!$user) {
+        if (! $user) {
             return;
         }
 
