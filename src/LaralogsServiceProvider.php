@@ -56,6 +56,14 @@ class LaralogsServiceProvider extends PackageServiceProvider
                     __DIR__ . '/../database/migrations/create_laralogs_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_laralogs_table.php'),
                 ], 'laravel-laralogs');
             }
+
+            sleep(1);
+
+            if (! class_exists('CreateLaralogsTableAddBrowserColumn')) {
+                $this->publishes([
+                    __DIR__ . '/../database/migrations/create_laralogs_table_add_browser_column.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_laralogs_table_add_browser_column.php'),
+                ], 'laravel-laralogs');
+            }
         }
     }
 }

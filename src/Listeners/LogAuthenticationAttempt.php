@@ -4,6 +4,7 @@ namespace Wremon\Laralogs\Listeners;
 
 use Illuminate\Auth\Events\Attempting;
 use Illuminate\Http\Request;
+use Wremon\Laralogs\Laralogs;
 use Wremon\Laralogs\Models\Log;
 
 class LogAuthenticationAttempt
@@ -48,13 +49,9 @@ class LogAuthenticationAttempt
             return;
         }
 
-        $log = new Log([
-            'source' => config('laralogs.source'),
-            'event' => 'Attempting',
-            'ip_address' => request()->ip(),
-            'user_agent' => request()->userAgent(),
-        ]);
+        $laralogs = new Laralogs();
 
-        $user->logs()->save($log);
+        $user->logs()
+            ->save($laralogs->addLog('Attempting'));
     }
 }

@@ -4,6 +4,7 @@ namespace Wremon\Laralogs\Listeners;
 
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
+use Wremon\Laralogs\Laralogs;
 use Wremon\Laralogs\Models\Log;
 
 class LogSuccessfulLogout
@@ -35,14 +36,9 @@ class LogSuccessfulLogout
     public function handle(Logout $event)
     {
         $user = $event->user;
+        $laralogs = new Laralogs();
 
-        $log = new Log([
-            'source' => config('laralogs.source'),
-            'event' => 'Logout',
-            'ip_address' => \request()->ip(),
-            'user_agent' => request()->userAgent(),
-        ]);
-
-        $user->logs()->save($log);
+        $user->logs()
+            ->save($laralogs->addLog('Logout'));
     }
 }

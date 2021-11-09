@@ -4,6 +4,7 @@ namespace Wremon\Laralogs\Listeners;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
+use Wremon\Laralogs\Laralogs;
 use Wremon\Laralogs\Models\Log;
 
 class LogSuccessfulLogin
@@ -35,15 +36,9 @@ class LogSuccessfulLogin
     public function handle(Login $event)
     {
         $user = $event->user;
-        $ip = $this->request->ip();
+        $laralogs = new Laralogs();
 
-        $log = new Log([
-            'source' => config('laralogs.source'),
-            'event' => 'Login',
-            'ip_address' => \request()->ip(),
-            'user_agent' => request()->userAgent(),
-        ]);
-
-        $user->logs()->save($log);
+        $user->logs()
+            ->save($laralogs->addLog('Login'));
     }
 }

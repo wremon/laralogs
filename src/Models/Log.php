@@ -30,6 +30,7 @@ class Log extends Model
         'event',
         'ip_address',
         'user_agent',
+        'browser',
     ];
 
     public function __construct(array $attributes = [])
