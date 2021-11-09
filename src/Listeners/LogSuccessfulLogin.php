@@ -5,7 +5,6 @@ namespace Wremon\Laralogs\Listeners;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Wremon\Laralogs\Laralogs;
-use Wremon\Laralogs\Models\Log;
 
 class LogSuccessfulLogin
 {

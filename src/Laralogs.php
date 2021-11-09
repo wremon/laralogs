@@ -7,7 +7,7 @@ use Wremon\Laralogs\Models\Log;
 
 class Laralogs
 {
-    function addLog($event)
+    public function addLog($event)
     {
         /**
          * Create a new log entry
@@ -29,7 +29,7 @@ class Laralogs
      * @return string
      * @throws \UAParser\Exception\FileNotFoundException
      */
-    function getBrowser()
+    public function getBrowser()
     {
         $parser = Parser::create();
         $userAgent = $parser->parse(request()->userAgent());
