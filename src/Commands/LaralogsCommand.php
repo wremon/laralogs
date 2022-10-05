@@ -6,9 +6,9 @@ use Illuminate\Console\Command;
 
 class LaralogsCommand extends Command
 {
-    public $signature = 'laralogs';
+    public string $signature = 'laralogs';
 
-    public $description = 'My command';
+    public string $description = 'My command';
 
     public function handle()
     {
