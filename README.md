@@ -33,6 +33,7 @@ LARALOGS_DB_USERNAME=
 LARALOGS_DB_PASSWORD=
 LARALOGS_DB_DATABASE="/Users/username/www/my-project/database/database.sqlite"
 LARALOGS_APP_NAME="My App Name"
+LARALOGS_USER_MODEL="\App\Models\User"
 LARALOGS_USER_COLUMN="email"
 ```
 

@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateLaralogsTableAddBrowserColumn extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        if (!Schema::connection(config('laralogs.db_connection'))->hasTable('laralogs_logs')) {
+            return;
+        }
+
+        Schema::connection(config('laralogs.db_connection'))->table('laralogs_logs', function (Blueprint $table) {
+            $table->string('browser', 255)->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        if (!Schema::connection(config('laralogs.db_connection'))->hasTable('laralogs_logs')) {
+            return;
+        }
+
+        Schema::connection(config('laralogs.db_connection'))->table('laralogs_logs', function (Blueprint $table) {
+            $table->dropColumn('browser');
+        });
+    }
+};

@@ -30,7 +30,6 @@ class LaralogsServiceProvider extends PackageServiceProvider
             ->name('laralogs')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_laralogs_table')
             ->hasCommand(LaralogsCommand::class);
     }
 
@@ -51,6 +50,20 @@ class LaralogsServiceProvider extends PackageServiceProvider
      */
     protected function publishMigrations()
     {
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        if ($this->app->runningInConsole()) {
+            if (! class_exists('CreateLaralogsTable')) {
+                $this->publishes([
+                    __DIR__ . '/../database/migrations/create_laralogs_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_laralogs_table.php'),
+                ], 'laravel-laralogs');
+            }
+
+            sleep(1);
+
+            if (! class_exists('CreateLaralogsTableAddBrowserColumn')) {
+                $this->publishes([
+                    __DIR__ . '/../database/migrations/create_laralogs_table_add_browser_column.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_laralogs_table_add_browser_column.php'),
+                ], 'laravel-laralogs');
+            }
+        }
     }
 }

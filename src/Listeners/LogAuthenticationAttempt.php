@@ -2,10 +2,9 @@
 
 namespace Wremon\Laralogs\Listeners;
 
-use App\Models\User;
 use Illuminate\Auth\Events\Attempting;
 use Illuminate\Http\Request;
-use Wremon\Laralogs\Models\Log;
+use Wremon\Laralogs\Laralogs;
 
 class LogAuthenticationAttempt
 {
@@ -19,7 +18,7 @@ class LogAuthenticationAttempt
     /**
      * Create the event listener.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return void
      */
     public function __construct(Request $request)
@@ -35,16 +34,23 @@ class LogAuthenticationAttempt
      */
     public function handle(Attempting $event)
     {
-        $userId = User::where(config('laralogs.user_column'), $event->credentials[config('laralogs.user_column')])->value('id');
-        $user = User::find($userId);
+        $user = config('laralogs.user_model', '\App\Models\User');
 
-        $log = new Log([
-            'source' => config('laralogs.source'),
-            'event' => 'Attempting',
-            'ip_address' => \request()->ip(),
-            'user_agent' => request()->userAgent(),
-        ]);
+        $userId = $user::where(config('laralogs.user_column'), $event->credentials[config('laralogs.user_column')])->value('id');
 
-        $user->logs()->save($log);
+        if (! $userId) {
+            return;
+        }
+
+        $user = $user::find($userId);
+
+        if (! $user) {
+            return;
+        }
+
+        $laralogs = new Laralogs();
+
+        $user->logs()
+            ->save($laralogs->addLog('Attempting'));
     }
 }
