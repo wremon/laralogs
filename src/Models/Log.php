@@ -11,21 +11,21 @@ class Log extends Model
      *
      * @var string
      */
-    protected $table = 'laralogs_logs';
+    protected string $table = 'laralogs_logs';
 
     /**
      * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $guarded = ['authenticatable_id', 'authenticatable_type'];
+    protected array $guarded = ['authenticatable_id', 'authenticatable_type'];
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
+    protected array $fillable = [
         'source',
         'event',
         'ip_address',
