@@ -36,9 +36,9 @@ class LogAuthenticationAttempt
     {
         $model = config('laralogs.user_model');
         $userColumn = config('laralogs.user_column');
-        $id = $model::where($userColumn, $event->credentials[$userColumn])->value('id');
+        $userId = $model::where($userColumn, $event->credentials[$userColumn])->value('id');
 
-        if ($id) {
+        if ($userId) {
             $model->logs()->save(app(Laralogs::class)->addLog('Attempting'));
         }
     }
