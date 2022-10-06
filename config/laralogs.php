@@ -11,6 +11,9 @@ return [
     'db_username' => env('LARALOGS_DB_USERNAME'),
     'db_password' => env('LARALOGS_DB_PASSWORD'),
 
+    /**
+     * User model
+     */
     'user_model' => env('LARALOGS_USER_MODEL', '\App\Models\User'),
     'user_column' => env('LARALOGS_USER_COLUMN', 'email'),
 
