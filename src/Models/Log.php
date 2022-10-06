@@ -3,6 +3,7 @@
 namespace Wremon\Laralogs\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Log extends Model
 {
@@ -43,7 +44,7 @@ class Log extends Model
     /**
      * Get the parent authenticatable model.
      */
-    public function authenticatable()
+    public function authenticatable(): MorphTo
     {
         return $this->morphTo();
     }

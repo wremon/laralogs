@@ -34,10 +34,6 @@ class LogSuccessfulLogin
      */
     public function handle(Login $event)
     {
-        $user = $event->user;
-        $laralogs = new Laralogs();
-
-        $user->logs()
-            ->save($laralogs->addLog('Login'));
+        $event->user->logs()->save(app(Laralogs::class)->addLog('Login'));
     }
 }
