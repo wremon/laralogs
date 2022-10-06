@@ -2,9 +2,9 @@
 
 namespace Wremon\Laralogs\Listeners;
 
+use Illuminate\Auth\Events\Attempting;
 use Illuminate\Http\Request;
 use Wremon\Laralogs\Laralogs;
-use Illuminate\Auth\Events\Attempting;
 
 class LogAuthenticationAttempt
 {
