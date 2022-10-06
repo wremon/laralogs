@@ -34,10 +34,6 @@ class LogSuccessfulLogout
      */
     public function handle(Logout $event)
     {
-        $user = $event->user;
-        $laralogs = new Laralogs();
-
-        $user->logs()
-            ->save($laralogs->addLog('Logout'));
+        $event->user->logs()->save(app(Laralogs::class)->addLog('Logout'));
     }
 }
