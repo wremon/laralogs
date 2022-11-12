@@ -34,12 +34,21 @@ class LogAuthenticationAttempt
      */
     public function handle(Attempting $event)
     {
-        $model = config('laralogs.user_model');
-        $userColumn = config('laralogs.user_column');
-        $userId = $model::where($userColumn, $event->credentials[$userColumn])->value('id');
+        $user = config('laralogs.user_model', '\App\Models\User');
+        $userColumn = config('laralogs.user_column', 'email');
+        $userId = $user::where($userColumn, $event->credentials[$userColumn])->value('id');
 
-        if ($userId) {
-            $model->logs()->save(app(Laralogs::class)->addLog('Attempting'));
+        if (! $userId) {
+            return;
         }
+
+        $user = $user::find($userId);
+
+        if (! $user) {
+            return;
+        }
+
+        $laralogs = new Laralogs();
+        $user->logs()->save($laralogs->addLog('Attempting'));
     }
 }
