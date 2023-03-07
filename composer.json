@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "spatie/laravel-package-tools": "^1.4.3",
         "nunomaduro/collision": "^6.1",
         "ua-parser/uap-php": "^3.9"
