@@ -27,7 +27,7 @@ trait Loggable
     /**
      * Get the model's last login's ip address.
      */
-    public function lastLoginIp()
+    public function getLastLoginIp()
     {
         return optional($this->logs()->first())->ip_address;
     }
@@ -43,7 +43,7 @@ trait Loggable
     /**
      * Get the model's previous login ip.
      */
-    public function previousLoginIp()
+    public function getPreviousLoginIp()
     {
         return optional($this->logs()->skip(1)->first())->ip_address;
     }
